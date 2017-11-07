@@ -1,6 +1,6 @@
 import React from 'react'
-import Search from '../Search'
-import BookList from '../BookList'
+import Search from '../Search/Search'
+import BookList from '../BookList/BookList'
 import {
   BrowserRouter as Router,
   Route
@@ -30,14 +30,16 @@ class BooksApp extends React.Component {
 
   render() {
 
+    const { books } = this.state
+
     return (
       <Router>
         <div className="app">
             <Route exact path='/' render={() => (
-              <BookList onShelfUpdated={this.updateShelf} books={this.state.books} title="My Reads" />
+              <BookList onShelfUpdated={this.updateShelf} books={books} title="My Reads" />
             )} />
             <Route path="/search" render={() => (
-              <Search onShelfUpdated={this.updateShelf} />
+              <Search books={books} onShelfUpdated={this.updateShelf} />
             )} />
         </div>
       </Router>

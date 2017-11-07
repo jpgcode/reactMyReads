@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ShelfList from '../ShelfList'
+import ShelfList from '../ShelfList/ShelfList'
 import './BookList.css'
 
 class BookList extends React.Component {

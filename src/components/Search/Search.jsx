@@ -1,6 +1,6 @@
 import React from 'react'
 import './Search.css'
-import Book from '../Book'
+import Book from '../Book/Book'
 import * as BooksAPI from '../../utils/BooksAPI'
 import { Link } from 'react-router-dom'
 
@@ -27,6 +27,7 @@ class Search extends React.Component {
   render() {
 
     const { query } = this.state
+    const { onShelfUpdated, books } = this.props
 
     return (
       <div className="search-books">
@@ -38,11 +39,17 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.showingBooks.map((book) => (
-              <li key={book.id}>
-                <Book onShelfUpdated={this.props.onShelfUpdated} book={book} />
-              </li>
-            ))}
+            {this.state.showingBooks.map((book) => {
+
+              const isBookInShelf = ((books.find(bookInShelf => book.id === bookInShelf.id)))
+              book.shelf = (isBookInShelf) ? isBookInShelf.shelf : 'none'
+
+              return (
+                <li key={book.id}>
+                  <Book onShelfUpdated={onShelfUpdated} book={book} />
+                </li>
+              )
+            })}
           </ol>
         </div>
       </div>
