@@ -1,6 +1,7 @@
 import React from 'react'
 import Book from '../Book/Book'
 import PropTypes from 'prop-types'
+import './ShelfList.css'
 
 class ShelfList extends React.Component {
 
